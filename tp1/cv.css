@@ -20,14 +20,6 @@ th, td {
     padding: 2px 2px 2px 10px;
     text-align: left;
   }
-
- /*  */
-a:hover {
-    color:orange;
-    text-decoration:none;
-    }
-tr:nth-child(odd) {background: #FFF}
-
 tr:hover {
     background-color: red;
 }
@@ -42,3 +34,11 @@ Titre {
 h1{
     text-transform: uppercase;
 }
+ /*  */
+a:hover {
+    color:orange;
+    text-decoration:none;
+    }
+tr:nth-child(odd) {background: #FFF}
+
+
