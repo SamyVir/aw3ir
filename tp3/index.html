@@ -19,15 +19,91 @@
               max-width: 800px;              
           }
         </style>
+
+        <!-- CSS boostrap -->
+        <link rel="stylesheet" href="css/bootstrap.css">
+        <!-- librairie Javascript de boostrap pour pouvoir utiliser les composants interactifs (modal https://getbootstrap.com/docs/5.1/components/modal/ , collapse...) -->
+        <script src="js/bootstrap.bundle.js"></script>
+        <script src="js/form-validation.js"></script>
+
         
         <!-- Code à dé-commenter si besoin de fichier CSS ou JS -->
         <!--<link rel="stylesheet" href="style.css">-->
         <!--<script src="main.js"></script>-->
     </head>
     <body>        
-        <h1>tp3</h1>
+        <h1>TP3</h1>
         <!-- Add your site or application content here -->
-        <p>Hello world! This is HTML5 Boilerplate.</p>
+        <p>Avec Bootstrap 5</p>
         <img src="../galilee.png" alt="Logo Galilee"/>
+
+        <form name="inscription">
+            
+              <div class="row mb-3">
+                <label for="Nom" class="col-sm-2 col-form-label">Nom</label>
+                <div class="col-sm-10">
+                  <input name="name" type="text" class="form-control" id="name">
+                </div>
+              </div>
+              
+              <div class="row mb-3">
+                <label for="Prénom" class="col-sm-2 col-form-label">Prénom</label>
+                <div class="col-sm-10">
+                  <input type="text" class="form-control" id="prenom">
+                </div>
+              </div>
+            
+              <div class="row mb-3">
+                <label for="Date" class="col-sm-2 col-form-label">Date de naissance</label>
+                <div class="col-sm-10">
+                  <input type="date" class="form-control" id="date" placeholder="JJ/MM/AAAA">
+                </div>
+              </div>
+
+              <div class="row mb-3">
+                <label for="Adresse" class="col-sm-2 col-form-label">Adresse</label>
+                <div class="col-sm-10">
+                  <input type="text" class="form-control" id="adrs">
+                </div>
+              </div>
+                
+
+            <div class="row mb-3">
+              <label for="inputEmail3" class="col-sm-2 col-form-label">Email</label>
+              <div class="col-sm-10">
+                <input type="email" class="form-control" id="email">
+              </div>
+            </div>
+            <br>
+            <!-- <button type="button" class="btn btn-primary" id="Submit">Submit</button> -->
+
+            <div class="col-auto">
+                <button type="submit"  id="Submit" class="btn btn-primary" value="Inscription" >Valider</button>
+              </div>
+
+          </form>
+          <br /><br />
+
+
+          <div class="modal fade" id="myModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body" id="first">
+                  <p>...</p>
+                </div>
+    
+                <a href="#" id="lien" target="blank"><img src="#" alt=""  width= "50%" id="map"></a>
+                
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Close</button>
+                </div>
+              </div>
+            </div>
+          </div> 
+
     </body>
 </html>
