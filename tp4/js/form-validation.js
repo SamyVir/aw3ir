@@ -1,51 +1,76 @@
 
 
-window.onload = function formValid() {
+window.onload = function () {
     
     document.querySelector("#button").addEventListener("click", function(e) {
         e.preventDefault();
         var myModal = new bootstrap.Modal(document.getElementById('myModal'));
         var myList = document.forms["inscription"];
-        console.log(myList);
+        var dateNaissance = new Date(myList["date"].value);
+        var nom = myList["nom"].value; 
+        var prenom = myList["prenom"].value; 
+        var adresse = myList["adresse"].value; 
+        var email = myList["email"].value; 
+        /* console.log(myList); */
 
         
-        if(myList["email"].value == "" || myList["email"].value.length < 5 || validateEmail(myList["email"].value) == false ){
+        if(email == "" || email.length < 5 || validateEmail(email) == false ){
             document.querySelector(".modal-title").textContent = "Attention erreur";
             document.querySelector(".modal-body").textContent = "Veuillez saisir un email valide ";
             document.querySelector("#map").src = "#";
             myModal.show();
         }
 
-        if(checkname(myList["nom"].value) == false || checkname(myList["prenom"].value) == false || myList["adresse"].value == false ){
+        else if(checkname(nom) == false || checkname(prenom) == false || adresse == false ){
             document.querySelector(".modal-title").textContent = "Attention erreur";
             document.querySelector(".modal-body").textContent = "Veuillez Respecter les régles pour le nom, le prénom ou l'adresse";
             document.querySelector("#map").src = "#";
             myModal.show();
         }
         
-        var dateNaissance = new Date(myList["date"].value);
-        if (dateNaissance.getTime() > Date.now()){
+        
+
+        else if(dateNaissance.getTime() > Date.now()){
             document.querySelector(".modal-title").textContent = "Attention ";
             document.querySelector(".modal-body").textContent = "la date ne doit pas etre dans le futur";
             document.querySelector("#map").src = "#";
             myModal.show();
         }
 
+        else { 
+            console.log("IT'S OK");
 
-        /* else{
-            document.querySelector(".modal-title").textContent = `Bienvenue ${document.querySelector("#prenom").value} !` ;
-            var month = dateNaissance.getUTCMonth() + 1;
-            var day = dateNaissance.getUTCDate();
-            var year = dateNaissance.getUTCFullYear();
-            newdate = day + "/" + month + "/" + year;
-            document.querySelector("#first").textContent = "Vous êtes né le "+ newdate +" et vous habitez ici: ";
+        var month = dateNaissance.getUTCMonth() + 1;
+        var day = dateNaissance.getUTCDate();
+        var year = dateNaissance.getUTCFullYear();
+        newdate = day + "/" + month + "/" + year;
+
+        contactStore.add(nom, prenom, newdate, adresse, email);
+        document.querySelector("tbody").innerHTML = "";
+        var listecontact = contactStore.getList();
+        console.log(listecontact);
+        for (var index in listecontact) {
+                console.log(index);
+            document.querySelector("tbody").innerHTML =
+                document.querySelector("tbody").innerHTML +
+                                "<tr><td>" +
+                                listecontact[index].name +
+                                "</td><td>" +
+                                listecontact[index].firstname +
+                                "</td><td>" +
+                                listecontact[index].date +
+                                "</td><td> <a href= 'https://maps.googleapis.com/maps/api/staticmap?markers=${document.querySelector(" + listecontact[index].adress + ").value}&zoom=7&size=400x300&scale=2&key=AIzaSyAkmvI9DazzG9p77IShsz_Di7-5Qn7zkcg' target='_blank'>" +
+                                listecontact[index].adress +
+                                " </a> </td><td> <a href='mailto:'>"+
+                                listecontact[index].mail +
+                                "</a></td></tr>" ;
+        }
+
     
-            document.querySelector("#map").src = `https://maps.googleapis.com/maps/api/staticmap?markers=${document.querySelector("#adrs").value}&zoom=7&size=400x300&scale=2&key=AIzaSyAkmvI9DazzG9p77IShsz_Di7-5Qn7zkcg`;
-            document.querySelector("#lien").href= `http://maps.google.com/maps?q=${document.querySelector("#adrs").value}`;
             
-    
-            myModal.show();
-        } */
+            
+            }
+
 
 
         for (var i = 0; i <myList.length; i++) {
@@ -80,6 +105,11 @@ function validateEmail(email) {
 function checkname(name) {
     const reg_username = /^\w{5,20}$/;
     return reg_username.test(name);
+
+}
+
+function calcNbChar(id) {
+    document.querySelector(`#${id} + span`).innerHTML = document.querySelector(`#${id}`).value.length;
 
 }
 
